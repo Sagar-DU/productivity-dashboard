@@ -1,20 +1,16 @@
 const mongoose = require('mongoose');
-require('dotenv').config();  // To load environment variables from .env file
+require('dotenv').config();
 
 const connectDB = async () => {
   try {
-    // Connect to MongoDB Atlas using the URI from .env
-    await mongoose.connect(process.env.MONGO_URI, {
-      useNewUrlParser: true,   // Ensures the MongoDB URI is parsed correctly
-      useUnifiedTopology: true, // Ensures the latest driver settings are used
-    });
+    // Connect to MongoDB Atlas
+    await mongoose.connect(process.env.MONGO_URI);
 
     console.log('MongoDB connected');
   } catch (err) {
-    // If connection fails, log the error and exit the process
     console.error(err.message);
-    process.exit(1); // Exit process with failure
+    process.exit(1);  // Exit with failure
   }
 };
 
-module.exports = connectDB;  // Export the connectDB function
+module.exports = connectDB;
